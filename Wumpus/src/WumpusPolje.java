@@ -10,6 +10,10 @@ public class WumpusPolje {
 	public boolean m_izhod_ = false;
 	public boolean m_start = false;
 	
+	public WumpusPolje(){
+		
+	}
+	
 	public WumpusPolje(boolean vetrovno, boolean smrad, boolean wumpus, boolean zlato, boolean brezno, boolean izhod, boolean start){
 		this.m_brezno = brezno;
 		this.m_izhod_ = izhod;
