@@ -39,6 +39,7 @@ public class WumpusMain {
 
 	}
 
+	//Method for initializing Wumpus world
 	private static boolean InitializeWumpusWorld(List<String> readFromFile) {
 		if(readFromFile.size() > 0){
 			for(int i = 0; i < readFromFile.size() - 1; i++)
@@ -48,6 +49,11 @@ public class WumpusMain {
 					numCol = Integer.parseInt(readFromFile.get(i).substring(2));
 
 					svetWumpus = new WumpusPolje[numRows][numCol];
+					for(int row = 0; row < svetWumpus.length; row++){
+						for(int col = 0; col < svetWumpus[0].length; col++){
+							svetWumpus[row][col] = new WumpusPolje();
+						}
+					}
 					break;
 				}
 			}
@@ -155,10 +161,11 @@ public class WumpusMain {
 		}
 	}
 
+	//Read from file
 	private static List<String> ReadFromFile(String file) {
 
 		List<String> seznam = new ArrayList<String>();
-
+		
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -171,13 +178,12 @@ public class WumpusMain {
 			}
 
 			br.close();
-
 			return seznam;
 		}
 		catch(Exception ex){
+			System.out.println(ex.getMessage());
+			System.exit(0);
 			return seznam;
 		}
-
 	}
-
 }
