@@ -15,30 +15,29 @@ public class WumpusMain {
 
 		//Read from input file
 		String file = args[0];
+		//String file = "/Users/matjaz/Desktop/svet_wumpusa.txt";
+		
 		if(!file.isEmpty()){
 			try{
-				boolean uspeh = InitializeWumpusWorld(ReadFromFile(file));
-				if(uspeh){
-					//Play
-					System.out.println("Game successfully started!");
+				boolean success = InitializeWumpusWorld(ReadFromFile(file));
+				if(success){
 					WumpusPlayer player = new WumpusPlayer();
-					System.out.println("Wumpus Player ready to play!");
 					player.Play(svetWumpus);
 				}
 				else{
-					System.out.println("Game did not start!");
+					WumpusHelper.Print("Game did not start!");
 				}
 			}
 			catch(Exception ex){
-				System.out.println(ex.getMessage());
+				WumpusHelper.Print(ex.getMessage());
 			}
 		}
 		else{
-			System.out.println("Insert Wumpus world!");
+			WumpusHelper.Print("Insert Wumpus world!");
 		}
 
 	}
-
+	
 	//Method for initializing Wumpus world
 	private static boolean InitializeWumpusWorld(List<String> readFromFile) {
 		if(readFromFile.size() > 0){
@@ -51,7 +50,7 @@ public class WumpusMain {
 					svetWumpus = new WumpusPolje[numRows][numCol];
 					for(int row = 0; row < svetWumpus.length; row++){
 						for(int col = 0; col < svetWumpus[0].length; col++){
-							svetWumpus[row][col] = new WumpusPolje();
+							svetWumpus[row][col] = new WumpusPolje(row, col);
 						}
 					}
 					break;
@@ -69,33 +68,7 @@ public class WumpusMain {
 							svetWumpus[x-1][y-1].m_start = true;
 						}
 						else{
-							WumpusPolje polje = new WumpusPolje(false, false, false, false, false, false, true);
-							svetWumpus[x-1][y-1] = polje;
-						}	
-					}
-					else if(readFromFile.get(i).matches("^B[0-9][0-9]")){
-
-						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
-						int y = Integer.parseInt(readFromFile.get(i).substring(2));
-
-						if(svetWumpus[x-1][y-1] != null){
-							svetWumpus[x-1][y-1].m_vetrovno = true;
-						}
-						else{
-							WumpusPolje polje = new WumpusPolje(true, false, false, false, false, false, false);
-							svetWumpus[x-1][y-1] = polje;
-						}	
-					}
-					else if(readFromFile.get(i).matches("^G[0-9][0-9]")){
-
-						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
-						int y = Integer.parseInt(readFromFile.get(i).substring(2));
-
-						if(svetWumpus[x-1][y-1] != null){
-							svetWumpus[x-1][y-1].m_zlato = true;
-						}
-						else{
-							WumpusPolje polje = new WumpusPolje(false, false, false, true, false, false, false);
+							WumpusPolje polje = new WumpusPolje(x-1, y-1, true, false, false, false, false, false, false);
 							svetWumpus[x-1][y-1] = polje;
 						}	
 					}
@@ -108,20 +81,20 @@ public class WumpusMain {
 							svetWumpus[x-1][y-1].m_izhod_ = true;
 						}
 						else{
-							WumpusPolje polje = new WumpusPolje(false, false, false, false, false, true, false);
+							WumpusPolje polje = new WumpusPolje(x-1, y-1, false, true, false, false, false, false, false);
 							svetWumpus[x-1][y-1] = polje;
 						}	
 					}
-					else if(readFromFile.get(i).matches("^P[0-9][0-9]")){
+					else if(readFromFile.get(i).matches("^G[0-9][0-9]")){
 
 						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
 						int y = Integer.parseInt(readFromFile.get(i).substring(2));
 
 						if(svetWumpus[x-1][y-1] != null){
-							svetWumpus[x-1][y-1].m_brezno = true;
+							svetWumpus[x-1][y-1].m_zlato = true;
 						}
 						else{
-							WumpusPolje polje = new WumpusPolje(false, false, false, false, true, false, false);
+							WumpusPolje polje = new WumpusPolje(x-1, y-1, false, false, true, false, false, false, false);
 							svetWumpus[x-1][y-1] = polje;
 						}	
 					}
@@ -134,7 +107,33 @@ public class WumpusMain {
 							svetWumpus[x-1][y-1].m_smrad = true;
 						}
 						else{
-							WumpusPolje polje = new WumpusPolje(false, true, false, false, false, false, false);
+							WumpusPolje polje = new WumpusPolje(x-1, y-1, false, false, false, true, false, false, false);
+							svetWumpus[x-1][y-1] = polje;
+						}	
+					}
+					else if(readFromFile.get(i).matches("^B[0-9][0-9]")){
+
+						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
+						int y = Integer.parseInt(readFromFile.get(i).substring(2));
+
+						if(svetWumpus[x-1][y-1] != null){
+							svetWumpus[x-1][y-1].m_vetrovno = true;
+						}
+						else{
+							WumpusPolje polje = new WumpusPolje(x-1, y-1, false, false, false, false, true, false, false);
+							svetWumpus[x-1][y-1] = polje;
+						}	
+					}
+					else if(readFromFile.get(i).matches("^P[0-9][0-9]")){
+
+						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
+						int y = Integer.parseInt(readFromFile.get(i).substring(2));
+
+						if(svetWumpus[x-1][y-1] != null){
+							svetWumpus[x-1][y-1].m_brezno = true;
+						}
+						else{
+							WumpusPolje polje = new WumpusPolje(x-1, y-1, false, false, false, false, false, true, false);
 							svetWumpus[x-1][y-1] = polje;
 						}	
 					}
@@ -147,7 +146,7 @@ public class WumpusMain {
 							svetWumpus[x-1][y-1].m_wumpus = true;
 						}
 						else{
-							WumpusPolje polje = new WumpusPolje(false, false, true, false, false, false, false);
+							WumpusPolje polje = new WumpusPolje(x-1, y-1, false, false, false, false, false, false, true);
 							svetWumpus[x-1][y-1] = polje;
 						}	
 					}
@@ -181,7 +180,7 @@ public class WumpusMain {
 			return seznam;
 		}
 		catch(Exception ex){
-			System.out.println(ex.getMessage());
+			WumpusHelper.Print(ex.getMessage());
 			System.exit(0);
 			return seznam;
 		}

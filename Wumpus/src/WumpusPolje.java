@@ -1,7 +1,7 @@
 
 public class WumpusPolje {
 	
-	//Private fields
+	//Public fields
 	public boolean m_vetrovno = false;
 	public boolean m_smrad = false;
 	public boolean m_wumpus = false;
@@ -9,19 +9,33 @@ public class WumpusPolje {
 	public boolean m_brezno = false;
 	public boolean m_izhod_ = false;
 	public boolean m_start = false;
+	public int m_x = 0;
+	public int m_y = 0;
+	public WumpusPolje m_oce;
 	
-	public WumpusPolje(){
-		
+	public WumpusPolje(int x, int y){
+		this.m_x = x;
+		this.m_y = y;
+		this.m_brezno = false;
+		this.m_izhod_ = false;
+		this.m_smrad = false;
+		this.m_vetrovno = false;
+		this.m_wumpus = false;
+		this.m_zlato = false;
+		this.m_start = false;
+		this.m_oce = null;
 	}
 	
-	public WumpusPolje(boolean vetrovno, boolean smrad, boolean wumpus, boolean zlato, boolean brezno, boolean izhod, boolean start){
-		this.m_brezno = brezno;
+	public WumpusPolje(int x, int y, boolean start, boolean izhod, boolean zlato, boolean smrad, boolean vetrovno, boolean brezno, boolean wumpus){
+		this.m_x = x;
+		this.m_y = y;
+		this.m_start = start;
 		this.m_izhod_ = izhod;
+		this.m_zlato = zlato;
 		this.m_smrad = smrad;
 		this.m_vetrovno = vetrovno;
+		this.m_brezno = brezno;
 		this.m_wumpus = wumpus;
-		this.m_zlato = zlato;
-		this.m_start = start;
+		this.m_oce = null;
 	}
-
 }
