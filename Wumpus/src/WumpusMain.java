@@ -14,8 +14,8 @@ public class WumpusMain {
 	public static void main(String[] args) {
 
 		//Read from input file
-		String file = args[0];
-		//String file = "/Users/matjaz/Desktop/svet_wumpusa.txt";
+		//String file = args[0];
+		String file = "/Users/matjaz/GitHub Projects/Wumpus/Docs/svet_wumpusa_1.txt";
 		
 		if(!file.isEmpty()){
 			try{
