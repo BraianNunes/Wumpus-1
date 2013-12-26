@@ -5,6 +5,10 @@
 # Eclipse generated files #
 ###########################
 
+# Directories #
+###############
+bin/
+
 # OS generated files #
 ######################
 .DS_Store
