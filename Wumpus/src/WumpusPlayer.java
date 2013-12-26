@@ -19,11 +19,54 @@ public class WumpusPlayer {
 	}
 	
 	//Public methods
+	
 	/*
-	 * Implement
+	 * Play 
 	 */
 	public void Play(WumpusPolje[][] wumpusWorld){
-
+		
+		//Set first action
+		int action = WumpusActions.right;
+		WumpusPolje tmpPolje = wumpusWorld[0][0];
+		
+		while(!this.m_endOfGame){
+			
+			switch(action){
+				case WumpusActions.right:
+					this.GoRight(tmpPolje, wumpusWorld);
+					break;
+				
+				case WumpusActions.down:
+					this.GoDown(tmpPolje, wumpusWorld);
+					break;
+					
+				case WumpusActions.back:
+					this.GoBack(tmpPolje, wumpusWorld);
+					break;
+			}
+		}
+		
+	}
+	
+	/*
+	 * Action: go right
+	 */
+	public void GoRight(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
+		
+	}
+	
+	/*
+	 * Action: go down
+	 */
+	public void GoDown(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
+		
+	}
+	
+	/*
+	 * Action: go back
+	 */
+	public void GoBack(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
+		
 	}
 	
 }
