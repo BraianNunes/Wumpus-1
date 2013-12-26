@@ -44,8 +44,8 @@ public class WumpusMain {
 			for(int i = 0; i < readFromFile.size() - 1; i++)
 			{	
 				if(readFromFile.get(i).matches("^M[0-9][0-9]")){
-					numRows = Integer.parseInt(readFromFile.get(i).substring(1, 2));
-					numCol = Integer.parseInt(readFromFile.get(i).substring(2));
+					numRows = Integer.parseInt(readFromFile.get(i).substring(2));
+					numCol = Integer.parseInt(readFromFile.get(i).substring(1, 2));
 
 					svetWumpus = new WumpusPolje[numRows][numCol];
 					for(int row = 0; row < svetWumpus.length; row++){
@@ -61,8 +61,8 @@ public class WumpusMain {
 				if(!readFromFile.get(i).matches("^M[0-9][0-9]")){
 					if(readFromFile.get(i).matches("^A[0-9][0-9]")){
 
-						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
-						int y = Integer.parseInt(readFromFile.get(i).substring(2));
+						int x = Integer.parseInt(readFromFile.get(i).substring(2));
+						int y = Integer.parseInt(readFromFile.get(i).substring(1, 2));
 
 						if(svetWumpus[x-1][y-1] != null){
 							svetWumpus[x-1][y-1].m_start = true;
@@ -74,8 +74,8 @@ public class WumpusMain {
 					}
 					else if(readFromFile.get(i).matches("^GO[0-9][0-9]")){
 
-						int x = Integer.parseInt(readFromFile.get(i).substring(2, 3));
-						int y = Integer.parseInt(readFromFile.get(i).substring(3));
+						int x = Integer.parseInt(readFromFile.get(i).substring(3));
+						int y = Integer.parseInt(readFromFile.get(i).substring(2, 3));
 
 						if(svetWumpus[x-1][y-1] != null){
 							svetWumpus[x-1][y-1].m_izhod_ = true;
@@ -87,8 +87,8 @@ public class WumpusMain {
 					}
 					else if(readFromFile.get(i).matches("^G[0-9][0-9]")){
 
-						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
-						int y = Integer.parseInt(readFromFile.get(i).substring(2));
+						int x = Integer.parseInt(readFromFile.get(i).substring(2));
+						int y = Integer.parseInt(readFromFile.get(i).substring(1, 2));
 
 						if(svetWumpus[x-1][y-1] != null){
 							svetWumpus[x-1][y-1].m_zlato = true;
@@ -100,8 +100,8 @@ public class WumpusMain {
 					}
 					else if(readFromFile.get(i).matches("^S[0-9][0-9]")){
 
-						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
-						int y = Integer.parseInt(readFromFile.get(i).substring(2));
+						int x = Integer.parseInt(readFromFile.get(i).substring(2));
+						int y = Integer.parseInt(readFromFile.get(i).substring(1, 2));
 
 						if(svetWumpus[x-1][y-1] != null){
 							svetWumpus[x-1][y-1].m_smrad = true;
@@ -113,8 +113,8 @@ public class WumpusMain {
 					}
 					else if(readFromFile.get(i).matches("^B[0-9][0-9]")){
 
-						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
-						int y = Integer.parseInt(readFromFile.get(i).substring(2));
+						int x = Integer.parseInt(readFromFile.get(i).substring(2));
+						int y = Integer.parseInt(readFromFile.get(i).substring(1, 2));
 
 						if(svetWumpus[x-1][y-1] != null){
 							svetWumpus[x-1][y-1].m_vetrovno = true;
@@ -126,8 +126,8 @@ public class WumpusMain {
 					}
 					else if(readFromFile.get(i).matches("^P[0-9][0-9]")){
 
-						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
-						int y = Integer.parseInt(readFromFile.get(i).substring(2));
+						int x = Integer.parseInt(readFromFile.get(i).substring(2));
+						int y = Integer.parseInt(readFromFile.get(i).substring(1, 2));
 
 						if(svetWumpus[x-1][y-1] != null){
 							svetWumpus[x-1][y-1].m_brezno = true;
@@ -139,8 +139,8 @@ public class WumpusMain {
 					}
 					else if(readFromFile.get(i).matches("^W[0-9][0-9]")){
 
-						int x = Integer.parseInt(readFromFile.get(i).substring(1, 2));
-						int y = Integer.parseInt(readFromFile.get(i).substring(2));
+						int x = Integer.parseInt(readFromFile.get(i).substring(2));
+						int y = Integer.parseInt(readFromFile.get(i).substring(1, 2));
 
 						if(svetWumpus[x-1][y-1] != null){
 							svetWumpus[x-1][y-1].m_wumpus = true;
