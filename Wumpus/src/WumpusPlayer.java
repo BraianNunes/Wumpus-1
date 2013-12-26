@@ -52,7 +52,24 @@ public class WumpusPlayer {
 	 * Action: go right
 	 */
 	public void GoRight(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
+//		tmpPolje.m_x += 1;
+//		tmpPolje.m_y += 0;
 		
+		WumpusHelper.Print(WumpusSteps.PremikNaPolje(tmpPolje.m_x, tmpPolje.m_y));
+		
+//		if(tmpPolje.m_zlato == true){
+//			WumpusHelper.Print(WumpusSteps.naselZlato);
+//		} else if(tmpPolje.m_vetrovno == true){
+//			WumpusHelper.Print(WumpusSteps.zaznalVetric);
+//		} else if(tmpPolje.m_smrad){
+//			WumpusHelper.Print(WumpusSteps.zaznalSmrad);
+//		} else if(tmpPolje.m_brezno){
+//			WumpusHelper.Print(WumpusSteps.konecBrezno);
+//		} else if(tmpPolje.m_wumpus){
+//			WumpusHelper.Print(WumpusSteps.konecWumpus);
+//		} else if(tmpPolje.m_izhod_){
+//			WumpusHelper.Print(WumpusSteps.konecZmaga);
+//		}
 	}
 	
 	/*
@@ -60,13 +77,27 @@ public class WumpusPlayer {
 	 */
 	public void GoDown(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
 		
+		
+//		if(tmpPolje.m_zlato == true){
+//		WumpusHelper.Print(WumpusSteps.naselZlato);
+//	} else if(tmpPolje.m_vetrovno == true){
+//		WumpusHelper.Print(WumpusSteps.zaznalVetric);
+//	} else if(tmpPolje.m_smrad){
+//		WumpusHelper.Print(WumpusSteps.zaznalSmrad);
+//	} else if(tmpPolje.m_brezno){
+//		WumpusHelper.Print(WumpusSteps.konecBrezno);
+//	} else if(tmpPolje.m_wumpus){
+//		WumpusHelper.Print(WumpusSteps.konecWumpus);
+//	} else if(tmpPolje.m_izhod_){
+//		WumpusHelper.Print(WumpusSteps.konecZmaga);
+//	}
 	}
 	
 	/*
 	 * Action: go back
 	 */
 	public void GoBack(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
-		
+//		tmpPolje.m_oce = wumpusWorld[i][j];
 	}
 	
 }
