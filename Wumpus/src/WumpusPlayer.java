@@ -8,6 +8,8 @@ public class WumpusPlayer {
 	private static int m_numArrow = 1; 
 	private static boolean m_endOfGame = false;
 	private static int m_points = 0;
+	
+	//Set first action
 	int action = WumpusActions.down;
 	
 	//Public properties
@@ -26,7 +28,6 @@ public class WumpusPlayer {
 	 */
 	public void Play(WumpusPolje[][] wumpusWorld){
 		
-		//Set first action
 		WumpusPolje tmpPolje = GetStartPositionOfPlayer(wumpusWorld);
 		
 		while(!this.m_endOfGame){
