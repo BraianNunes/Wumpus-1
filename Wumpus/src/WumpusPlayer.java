@@ -27,7 +27,7 @@ public class WumpusPlayer {
 		
 		//Set first action
 		int action = WumpusActions.right;
-		WumpusPolje tmpPolje = wumpusWorld[0][0];
+		WumpusPolje tmpPolje = GetStartPositionOfPlayer(wumpusWorld);
 		
 		while(!this.m_endOfGame){
 			
@@ -47,7 +47,7 @@ public class WumpusPlayer {
 		}
 		
 	}
-	
+
 	/*
 	 * Action: go right
 	 */
@@ -67,6 +67,25 @@ public class WumpusPlayer {
 	 */
 	public void GoBack(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
 		
+	}
+	
+	/*
+	 * Return start position of player
+	 */
+	private WumpusPolje GetStartPositionOfPlayer(WumpusPolje[][] wumpusWorld) {
+		
+		WumpusPolje start = null;
+		
+		for(int row = 0; row < wumpusWorld.length; row++){
+			for(int col = 0; col < wumpusWorld[0].length; col++){
+				if(wumpusWorld[row][col].m_start){
+					start = wumpusWorld[row][col];
+					break;
+				}
+			}
+		}
+		
+		return start;
 	}
 	
 }
