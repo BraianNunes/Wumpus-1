@@ -8,6 +8,7 @@ public class WumpusPlayer {
 	private static int m_numArrow = 1; 
 	private static boolean m_endOfGame = false;
 	private static int m_points = 0;
+	int action = WumpusActions.down;
 	
 	//Public properties
 	public List<WumpusPolje> obiskanaPolja;
@@ -26,13 +27,7 @@ public class WumpusPlayer {
 	public void Play(WumpusPolje[][] wumpusWorld){
 		
 		//Set first action
-<<<<<<< HEAD
-		int action = WumpusActions.down;
-		WumpusPolje tmpPolje = wumpusWorld[0][0];
-=======
-		int action = WumpusActions.right;
 		WumpusPolje tmpPolje = GetStartPositionOfPlayer(wumpusWorld);
->>>>>>> master
 		
 		while(!this.m_endOfGame){
 			
@@ -57,18 +52,20 @@ public class WumpusPlayer {
 	 * Action: go right
 	 */
 	public void GoRight(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
-		tmpPolje.m_x += 0;
-		tmpPolje.m_y += 1;
+		if(wumpusWorld[tmpPolje.m_x][tmpPolje.m_y] != null){
+			tmpPolje.m_x += 0;
+			tmpPolje.m_y += 1;
+		}
 		
 		WumpusHelper.Print(WumpusSteps.PremikNaPolje(tmpPolje.m_x, tmpPolje.m_y));
 		
 		if(tmpPolje.m_vetrovno == true){
 			WumpusHelper.Print(WumpusSteps.zaznalVetric);
-			GoBack(tmpPolje, wumpusWorld);
+			action = WumpusActions.back;
 			m_points += WumpusRating.action;
 		} else if(tmpPolje.m_smrad){
 			WumpusHelper.Print(WumpusSteps.zaznalSmrad);
-			GoBack(tmpPolje, wumpusWorld);
+			action = WumpusActions.back;
 			m_points += WumpusRating.action;
 		} else if(tmpPolje.m_zlato == true){
 			WumpusHelper.Print(WumpusSteps.naselZlato);
@@ -102,11 +99,11 @@ public class WumpusPlayer {
 		
 		if(tmpPolje.m_vetrovno == true){
 			WumpusHelper.Print(WumpusSteps.zaznalVetric);
-			GoBack(tmpPolje, wumpusWorld);
+			action = WumpusActions.back;
 			m_points += WumpusRating.action;
 		} else if(tmpPolje.m_smrad){
 			WumpusHelper.Print(WumpusSteps.zaznalSmrad);
-			GoBack(tmpPolje, wumpusWorld);
+			action = WumpusActions.back;
 			m_points += WumpusRating.action;
 		} else if(tmpPolje.m_zlato == true){
 			WumpusHelper.Print(WumpusSteps.naselZlato);
@@ -133,9 +130,8 @@ public class WumpusPlayer {
 	public void GoBack(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
 		tmpPolje.m_oce = wumpusWorld[tmpPolje.m_x][tmpPolje.m_y];
 		WumpusHelper.Print("sem tukaj!");
+		action = WumpusActions.right;
 	}
-<<<<<<< HEAD
-=======
 	
 	/*
 	 * Return start position of player
@@ -156,5 +152,4 @@ public class WumpusPlayer {
 		return start;
 	}
 	
->>>>>>> master
 }
