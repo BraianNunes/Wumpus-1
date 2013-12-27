@@ -26,8 +26,13 @@ public class WumpusPlayer {
 	public void Play(WumpusPolje[][] wumpusWorld){
 		
 		//Set first action
+<<<<<<< HEAD
 		int action = WumpusActions.down;
 		WumpusPolje tmpPolje = wumpusWorld[0][0];
+=======
+		int action = WumpusActions.right;
+		WumpusPolje tmpPolje = GetStartPositionOfPlayer(wumpusWorld);
+>>>>>>> master
 		
 		while(!this.m_endOfGame){
 			
@@ -47,7 +52,7 @@ public class WumpusPlayer {
 		}
 		
 	}
-	
+
 	/*
 	 * Action: go right
 	 */
@@ -129,4 +134,27 @@ public class WumpusPlayer {
 		tmpPolje.m_oce = wumpusWorld[tmpPolje.m_x][tmpPolje.m_y];
 		WumpusHelper.Print("sem tukaj!");
 	}
+<<<<<<< HEAD
+=======
+	
+	/*
+	 * Return start position of player
+	 */
+	private WumpusPolje GetStartPositionOfPlayer(WumpusPolje[][] wumpusWorld) {
+		
+		WumpusPolje start = null;
+		
+		for(int row = 0; row < wumpusWorld.length; row++){
+			for(int col = 0; col < wumpusWorld[0].length; col++){
+				if(wumpusWorld[row][col].m_start){
+					start = wumpusWorld[row][col];
+					break;
+				}
+			}
+		}
+		
+		return start;
+	}
+	
+>>>>>>> master
 }
