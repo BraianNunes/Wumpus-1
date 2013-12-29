@@ -10,7 +10,8 @@ public final class WumpusSteps {
 	public static final String naselZlato = "Nasel zlato na polju ";
 	public static final String konecWumpus = "Wumpus me je pojedel.";
 	public static final String konecBrezno = "Padel sem v brezno.";
-	public static final String konecZmaga = "Zakljucil sem igro.";
+	public static final String konecZmaga = "Zakljucil sem igro ";
+	public static final String getPoints = "Skupno stevilo tock: ";
 	
 	public static final String PremikNaPolje(int x, int y){
 		return premikNaPolje + "(" + x + ", " + y + ")";
@@ -20,11 +21,27 @@ public final class WumpusSteps {
 		return zaznalWumpus + "(" + x + ", " + y + ")";
 	}
 	
-	public static final String zaznalBrezno(int x, int y){
+	public static final String ZaznalBrezno(int x, int y){
 		return zaznalBrezno + "(" + x + ", " + y + ")";
 	}
 	
-	public static final String naselZlato(int x, int y){
+	public static final String NaselZlato(int x, int y){
 		return naselZlato + "(" + x + ", " + y + ")";
+	}
+	
+	public static final String KonecBrezno(int x, int y){
+		return konecBrezno + "(" + x + ", " + y + ")";
+	}
+	
+	public static final String KonecWumpus(int x, int y){
+		return konecWumpus + "(" + x + ", " + y + ")";
+	}
+	
+	public static final String KonecZmaga(int x, int y){
+		return konecZmaga + "(" + x + ", " + y + ")";
+	}
+	
+	public static final String GetPoints(int points){
+		return getPoints + "(" + points + ")";
 	}
 }

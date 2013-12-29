@@ -14,8 +14,7 @@ public class WumpusMain {
 	public static void main(String[] args) {
 
 		//Read from input file
-		//String file = args[0];
-		String file = "/Users/matjaz/GitHub Projects/Wumpus/Docs/svet_wumpusa_1.txt";
+		String file = args[0];
 		
 		if(!file.isEmpty()){
 			try{
@@ -78,7 +77,7 @@ public class WumpusMain {
 						int y = Integer.parseInt(readFromFile.get(i).substring(2, 3));
 
 						if(svetWumpus[x-1][y-1] != null){
-							svetWumpus[x-1][y-1].m_izhod_ = true;
+							svetWumpus[x-1][y-1].m_izhod = true;
 						}
 						else{
 							WumpusPolje polje = new WumpusPolje(x-1, y-1, false, true, false, false, false, false, false);
