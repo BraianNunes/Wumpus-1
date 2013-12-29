@@ -71,14 +71,14 @@ public class WumpusPlayer {
 		//Vetric
 		if(tmpPolje.m_vetrovno){
 			WumpusHelper.Print(WumpusSteps.zaznalVetric);
-			this.action = GetLogicAction(wumpusWorld);
+			this.action = GetLogicActionVetric(wumpusWorld);
 			tmpPolje.m_lastAction = action;
 		}
 			
 		//Smrad
 		if(tmpPolje.m_smrad){
 			WumpusHelper.Print(WumpusSteps.zaznalSmrad);
-			this.action = GetLogicAction(wumpusWorld);
+			this.action = GetLogicActionSmrad(wumpusWorld);
 			tmpPolje.m_lastAction = action;
 		}
 		
@@ -135,14 +135,14 @@ public class WumpusPlayer {
 		//Vetric
 		if(tmpPolje.m_vetrovno){
 			WumpusHelper.Print(WumpusSteps.zaznalVetric);
-			this.action = GetLogicAction(wumpusWorld);
+			this.action = GetLogicActionVetric(wumpusWorld);
 			tmpPolje.m_lastAction = action;
 		}
 			
 		//Smrad
 		if(tmpPolje.m_smrad){
 			WumpusHelper.Print(WumpusSteps.zaznalSmrad);
-			this.action = GetLogicAction(wumpusWorld);
+			this.action = GetLogicActionSmrad(wumpusWorld);
 			tmpPolje.m_lastAction = action;
 		}
 		
@@ -232,9 +232,9 @@ public class WumpusPlayer {
 	}
 	
 	/*
-	 * Return WumpusAction 
+	 * Return WumpusAction  for vetric
 	 */
-	private int GetLogicAction(WumpusPolje[][] wumpusWorld){
+	private int GetLogicActionVetric(WumpusPolje[][] wumpusWorld){
 		
 		if(tmpPolje.m_vetrovno){
 			
@@ -253,6 +253,14 @@ public class WumpusPlayer {
 			}
 			
 		}
+		
+		return WumpusActions.back;
+	}
+	
+	/*
+	 * Return WumpusAction for smrad
+	 */
+	private int GetLogicActionSmrad(WumpusPolje[][] wumpusWorld){
 		
 		if(tmpPolje.m_smrad){
 			
