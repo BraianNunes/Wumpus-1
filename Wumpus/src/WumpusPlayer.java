@@ -236,23 +236,42 @@ public class WumpusPlayer {
 	 */
 	private int GetLogicAction(WumpusPolje[][] wumpusWorld){
 		
-		if(tmpPolje.m_x + 1 < wumpusWorld.length && tmpPolje.m_y - 1 >= 0){
-			if((tmpPolje.m_vetrovno && 
-					wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1] != null &&
-					obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1]) && 
-					!wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1].m_vetrovno)){
-				return WumpusActions.down;
+		if(tmpPolje.m_vetrovno){
+			
+			//Down
+			if(tmpPolje.m_x + 1 < wumpusWorld.length && tmpPolje.m_y - 1 >= 0){
+				if(obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1]) && !wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1].m_vetrovno){
+					return WumpusActions.down;
+				}
 			}
 			
-			if(tmpPolje.m_smrad && 
-					wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1] != null &&
-					obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1]) && 
-					!wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1].m_smrad){
-				return WumpusActions.down;
+			//Right
+			if(tmpPolje.m_x - 1 >= 0 && tmpPolje.m_y + 1 < wumpusWorld[0].length){
+				if(obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x - 1][tmpPolje.m_y + 1]) && !wumpusWorld[tmpPolje.m_x - 1][tmpPolje.m_y + 1].m_vetrovno){
+					return WumpusActions.right;
+				}
 			}
+			
+		}
+		
+		if(tmpPolje.m_smrad){
+			
+			//Down
+			if(tmpPolje.m_x + 1 < wumpusWorld.length && tmpPolje.m_y - 1 >= 0){
+				if(obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1]) && !wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1].m_smrad){
+					return WumpusActions.down;
+				}
+			}
+			
+			//Right
+			if(tmpPolje.m_x - 1 >= 0 && tmpPolje.m_y + 1 < wumpusWorld[0].length){
+				if(obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x - 1][tmpPolje.m_y + 1]) && !wumpusWorld[tmpPolje.m_x - 1][tmpPolje.m_y + 1].m_smrad){
+					return WumpusActions.right;
+				}
+			}
+			
 		}
 		
 		return WumpusActions.back;
-	
 	}
 }
