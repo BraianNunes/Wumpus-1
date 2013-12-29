@@ -38,10 +38,13 @@ public class WumpusMain {
 	}
 	
 	//Method for initializing Wumpus world
-	private static boolean InitializeWumpusWorld(List<String> readFromFile) {
+	private static boolean InitializeWumpusWorld(List<String> readFromFile) throws Exception {
 		if(readFromFile.size() > 0){
 			for(int i = 0; i < readFromFile.size() - 1; i++)
 			{	
+				if(readFromFile.get(i).startsWith("M") && readFromFile.get(i).length() > 3){
+					throw new Exception("Game field can have up to 9 rows and 9 columns!");
+				}
 				if(readFromFile.get(i).matches("^M[0-9][0-9]")){
 					numRows = Integer.parseInt(readFromFile.get(i).substring(2));
 					numCol = Integer.parseInt(readFromFile.get(i).substring(1, 2));
