@@ -4,10 +4,11 @@ import java.util.List;
 
 public class WumpusPlayer {
 	
-	//Private fields
-	private static int m_numArrow = 1; 
+	//Private fields 
 	private static boolean m_endOfGame = false;
 	private static int m_points = 0;
+	private static int action = WumpusActions.down; //First action
+	private static WumpusPolje tmpPolje = null;
 	
 	//Set first action
 	int action = WumpusActions.down;
@@ -28,21 +29,28 @@ public class WumpusPlayer {
 	 */
 	public void Play(WumpusPolje[][] wumpusWorld){
 		
+<<<<<<< HEAD
 		WumpusPolje tmpPolje = GetStartPositionOfPlayer(wumpusWorld);
+=======
+		//Temporary WumpusPolje
+		tmpPolje = GetStartPositionOfPlayer(wumpusWorld);
+		tmpPolje.m_lastAction = action;
+		obiskanaPolja.add(tmpPolje);
+>>>>>>> master
 		
 		while(!this.m_endOfGame){
 			
 			switch(action){
 				case WumpusActions.right:
-					this.GoRight(tmpPolje, wumpusWorld);
+					this.GoRight(wumpusWorld);
 					break;
 				
 				case WumpusActions.down:
-					this.GoDown(tmpPolje, wumpusWorld);
+					this.GoDown(wumpusWorld);
 					break;
 					
 				case WumpusActions.back:
-					this.GoBack(tmpPolje, wumpusWorld);
+					this.GoBack(wumpusWorld);
 					break;
 			}
 		}
@@ -52,12 +60,73 @@ public class WumpusPlayer {
 	/*
 	 * Action: go right
 	 */
+<<<<<<< HEAD
 	public void GoRight(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
 		 if(wumpusWorld[tmpPolje.m_x+1][tmpPolje.m_y] != null){
 			tmpPolje = wumpusWorld[tmpPolje.m_x+1][tmpPolje.m_y];
 		}
 		
 		WumpusHelper.Print(WumpusSteps.PremikNaPolje(tmpPolje.m_x, tmpPolje.m_y));
+=======
+	public void GoRight(WumpusPolje[][] wumpusWorld) {
+		
+		WumpusPolje oce = tmpPolje;
+		tmpPolje = wumpusWorld[tmpPolje.m_x][tmpPolje.m_y + 1];
+		obiskanaPolja.add(tmpPolje);
+		tmpPolje.m_oce = oce;
+		this.m_points += WumpusRating.action;
+		WumpusHelper.Print(WumpusSteps.PremikNaPolje(tmpPolje.m_x, tmpPolje.m_y));
+		
+		//Varno
+		if(tmpPolje.IsSafe()){
+			this.action = WumpusActions.down;
+			tmpPolje.m_lastAction = action;
+		}
+		
+		//Vetric
+		if(tmpPolje.m_vetrovno){
+			WumpusHelper.Print(WumpusSteps.zaznalVetric);
+			this.action = GetLogicActionVetric(wumpusWorld);
+			tmpPolje.m_lastAction = action;
+		}
+			
+		//Smrad
+		if(tmpPolje.m_smrad){
+			WumpusHelper.Print(WumpusSteps.zaznalSmrad);
+			this.action = GetLogicActionSmrad(wumpusWorld);
+			tmpPolje.m_lastAction = action;
+		}
+		
+		//Zlato
+		if(tmpPolje.m_zlato && (!tmpPolje.m_wumpus || !tmpPolje.m_brezno)){
+			WumpusHelper.Print(WumpusSteps.NaselZlato(tmpPolje.m_x, tmpPolje.m_y));
+			this.m_points += WumpusRating.findGold;
+		}
+		
+		//Jama
+		if(tmpPolje.m_brezno){
+			WumpusHelper.Print(WumpusSteps.KonecBrezno(tmpPolje.m_x, tmpPolje.m_y));
+			this.m_points = WumpusRating.fallingIntoAPit;
+			this.m_endOfGame = true;
+			WumpusHelper.Print(WumpusSteps.GetPoints(this.m_points));
+		}
+		
+		//Wumpus
+		if(tmpPolje.m_wumpus){
+			WumpusHelper.Print(WumpusSteps.KonecWumpus(tmpPolje.m_x, tmpPolje.m_y));
+			this.m_points = WumpusRating.eatenByWumpus;
+			this.m_endOfGame = true;
+			WumpusHelper.Print(WumpusSteps.GetPoints(this.m_points));
+		}
+		
+		//Izhod
+		if(tmpPolje.m_izhod){
+			WumpusHelper.Print(WumpusSteps.KonecZmaga(tmpPolje.m_x, tmpPolje.m_y));
+			this.m_points = WumpusRating.climbOutOfCave;
+			this.m_endOfGame = true;
+			WumpusHelper.Print(WumpusSteps.GetPoints(this.m_points));
+		}
+>>>>>>> master
 		
 		if(tmpPolje.m_vetrovno){
 			WumpusHelper.Print(WumpusSteps.zaznalVetric);
@@ -88,12 +157,73 @@ public class WumpusPlayer {
 	/*
 	 * Action: go down
 	 */
+<<<<<<< HEAD
 	public void GoDown(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
 		if(wumpusWorld[tmpPolje.m_x+1][tmpPolje.m_y] != null){
 			tmpPolje = wumpusWorld[tmpPolje.m_x+1][tmpPolje.m_y];
 		}
 
 		WumpusHelper.Print(WumpusSteps.PremikNaPolje(tmpPolje.m_x, tmpPolje.m_y));
+=======
+	public void GoDown(WumpusPolje[][] wumpusWorld) {
+		
+		WumpusPolje oce = tmpPolje;
+		tmpPolje = wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y];
+		obiskanaPolja.add(tmpPolje);
+		tmpPolje.m_oce = oce;
+		this.m_points += WumpusRating.action;
+		WumpusHelper.Print(WumpusSteps.PremikNaPolje(tmpPolje.m_x, tmpPolje.m_y));
+		
+		//Varno
+		if(tmpPolje.IsSafe()){
+			this.action = WumpusActions.down;
+			tmpPolje.m_lastAction = action;
+		}
+		
+		//Vetric
+		if(tmpPolje.m_vetrovno){
+			WumpusHelper.Print(WumpusSteps.zaznalVetric);
+			this.action = GetLogicActionVetric(wumpusWorld);
+			tmpPolje.m_lastAction = action;
+		}
+			
+		//Smrad
+		if(tmpPolje.m_smrad){
+			WumpusHelper.Print(WumpusSteps.zaznalSmrad);
+			this.action = GetLogicActionSmrad(wumpusWorld);
+			tmpPolje.m_lastAction = action;
+		}
+		
+		//Zlato
+		if(tmpPolje.m_zlato && (!tmpPolje.m_wumpus || !tmpPolje.m_brezno)){
+			WumpusHelper.Print(WumpusSteps.NaselZlato(tmpPolje.m_x, tmpPolje.m_y));
+			this.m_points += WumpusRating.findGold;
+		}
+		
+		//Jama
+		if(tmpPolje.m_brezno){
+			WumpusHelper.Print(WumpusSteps.KonecBrezno(tmpPolje.m_x, tmpPolje.m_y));
+			this.m_points = WumpusRating.fallingIntoAPit;
+			this.m_endOfGame = true;
+			WumpusHelper.Print(WumpusSteps.GetPoints(this.m_points));
+		}
+		
+		//Wumpus
+		if(tmpPolje.m_wumpus){
+			WumpusHelper.Print(WumpusSteps.KonecWumpus(tmpPolje.m_x, tmpPolje.m_y));
+			this.m_points = WumpusRating.eatenByWumpus;
+			this.m_endOfGame = true;
+			WumpusHelper.Print(WumpusSteps.GetPoints(this.m_points));
+		}
+		
+		//Izhod
+		if(tmpPolje.m_izhod){
+			WumpusHelper.Print(WumpusSteps.KonecZmaga(tmpPolje.m_x, tmpPolje.m_y));
+			this.m_points = WumpusRating.climbOutOfCave;
+			this.m_endOfGame = true;
+			WumpusHelper.Print(WumpusSteps.GetPoints(this.m_points));
+		}
+>>>>>>> master
 		
 		if(tmpPolje.m_vetrovno){
 			WumpusHelper.Print(WumpusSteps.zaznalVetric);
@@ -125,10 +255,42 @@ public class WumpusPlayer {
 	/*
 	 * Action: go back
 	 */
+<<<<<<< HEAD
 	public void GoBack(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
 		tmpPolje.m_oce = wumpusWorld[tmpPolje.m_x][tmpPolje.m_y];
 		WumpusHelper.Print("sem tukaj!");
 		action = WumpusActions.right;
+=======
+	public void GoBack(WumpusPolje[][] wumpusWorld) {
+		
+		tmpPolje = tmpPolje.m_oce;
+		obiskanaPolja.add(tmpPolje);
+		this.m_points += WumpusRating.action;
+		WumpusHelper.Print(WumpusSteps.PremikNaPolje(tmpPolje.m_x, tmpPolje.m_y));
+		
+		if(tmpPolje.m_lastAction == WumpusActions.down && tmpPolje.IsSafe() && !obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x][tmpPolje.m_y + 1])){
+			action = WumpusActions.right;
+			tmpPolje.m_lastAction = action;
+		}
+		else if(tmpPolje.m_lastAction == WumpusActions.right && tmpPolje.IsSafe() && !obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y])){
+			action = WumpusActions.down;
+			tmpPolje.m_lastAction = action;
+		}
+		else{
+			if(tmpPolje.m_oce != null){
+				action = WumpusActions.back;
+				tmpPolje.m_lastAction = action;
+			}
+			else{
+				if(tmpPolje.m_izhod){
+					this.m_points += WumpusRating.climbOutOfCave;
+					this.m_endOfGame = true;
+					WumpusHelper.Print(WumpusSteps.KonecZmaga(tmpPolje.m_x, tmpPolje.m_y));
+					WumpusHelper.Print(WumpusSteps.GetPoints(this.m_points));
+				}
+			}
+		}
+>>>>>>> master
 	}
 	
 	/*
@@ -150,4 +312,55 @@ public class WumpusPlayer {
 		return start;
 	}
 	
+	/*
+	 * Return WumpusAction  for vetric
+	 */
+	private int GetLogicActionVetric(WumpusPolje[][] wumpusWorld){
+		
+		if(tmpPolje.m_vetrovno){
+			
+			//Down
+			if(tmpPolje.m_x + 1 < wumpusWorld.length && tmpPolje.m_y - 1 >= 0){
+				if(obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1]) && !wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1].m_vetrovno){
+					return WumpusActions.down;
+				}
+			}
+			
+			//Right
+			if(tmpPolje.m_x - 1 >= 0 && tmpPolje.m_y + 1 < wumpusWorld[0].length){
+				if(obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x - 1][tmpPolje.m_y + 1]) && !wumpusWorld[tmpPolje.m_x - 1][tmpPolje.m_y + 1].m_vetrovno){
+					return WumpusActions.right;
+				}
+			}
+			
+		}
+		
+		return WumpusActions.back;
+	}
+	
+	/*
+	 * Return WumpusAction for smrad
+	 */
+	private int GetLogicActionSmrad(WumpusPolje[][] wumpusWorld){
+		
+		if(tmpPolje.m_smrad){
+			
+			//Down
+			if(tmpPolje.m_x + 1 < wumpusWorld.length && tmpPolje.m_y - 1 >= 0){
+				if(obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1]) && !wumpusWorld[tmpPolje.m_x + 1][tmpPolje.m_y - 1].m_smrad){
+					return WumpusActions.down;
+				}
+			}
+			
+			//Right
+			if(tmpPolje.m_x - 1 >= 0 && tmpPolje.m_y + 1 < wumpusWorld[0].length){
+				if(obiskanaPolja.contains(wumpusWorld[tmpPolje.m_x - 1][tmpPolje.m_y + 1]) && !wumpusWorld[tmpPolje.m_x - 1][tmpPolje.m_y + 1].m_smrad){
+					return WumpusActions.right;
+				}
+			}
+			
+		}
+		
+		return WumpusActions.back;
+	}
 }

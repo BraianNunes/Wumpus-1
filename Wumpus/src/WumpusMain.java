@@ -14,9 +14,13 @@ public class WumpusMain {
 	public static void main(String[] args) {
 
 		//Read from input file
+<<<<<<< HEAD
 		//String file = args[0];
 		String file = "/Users/sasanikolic/Desktop/svet_wumpusa.txt";
 		//String file = "/Users/matjaz/GitHub Projects/Wumpus/Docs/svet_wumpusa_1.txt";
+=======
+		String file = args[0];
+>>>>>>> master
 		
 		if(!file.isEmpty()){
 			try{
@@ -40,10 +44,13 @@ public class WumpusMain {
 	}
 	
 	//Method for initializing Wumpus world
-	private static boolean InitializeWumpusWorld(List<String> readFromFile) {
+	private static boolean InitializeWumpusWorld(List<String> readFromFile) throws Exception {
 		if(readFromFile.size() > 0){
 			for(int i = 0; i < readFromFile.size() - 1; i++)
 			{	
+				if(readFromFile.get(i).startsWith("M") && readFromFile.get(i).length() > 3){
+					throw new Exception("Game field can have up to 9 rows and 9 columns!");
+				}
 				if(readFromFile.get(i).matches("^M[0-9][0-9]")){
 					numRows = Integer.parseInt(readFromFile.get(i).substring(2));
 					numCol = Integer.parseInt(readFromFile.get(i).substring(1, 2));
@@ -79,7 +86,7 @@ public class WumpusMain {
 						int y = Integer.parseInt(readFromFile.get(i).substring(2, 3));
 
 						if(svetWumpus[x-1][y-1] != null){
-							svetWumpus[x-1][y-1].m_izhod_ = true;
+							svetWumpus[x-1][y-1].m_izhod = true;
 						}
 						else{
 							WumpusPolje polje = new WumpusPolje(x-1, y-1, false, true, false, false, false, false, false);
