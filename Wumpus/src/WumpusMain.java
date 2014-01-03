@@ -14,13 +14,13 @@ public class WumpusMain {
 	public static void main(String[] args) {
 
 		//Read from input file
-<<<<<<< HEAD
+
 		//String file = args[0];
 		String file = "/Users/sasanikolic/Desktop/svet_wumpusa.txt";
 		//String file = "/Users/matjaz/GitHub Projects/Wumpus/Docs/svet_wumpusa_1.txt";
-=======
-		String file = args[0];
->>>>>>> master
+
+		//String file = args[0];
+
 		
 		if(!file.isEmpty()){
 			try{
