@@ -53,20 +53,18 @@ public class WumpusPlayer {
 	 * Action: go right
 	 */
 	public void GoRight(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
-		if(wumpusWorld[tmpPolje.m_x][tmpPolje.m_y] != null){
-			tmpPolje.m_x += 0;
-			tmpPolje.m_y += 1;
+		 if(wumpusWorld[tmpPolje.m_x+1][tmpPolje.m_y] != null){
+			tmpPolje = wumpusWorld[tmpPolje.m_x+1][tmpPolje.m_y];
 		}
 		
 		WumpusHelper.Print(WumpusSteps.PremikNaPolje(tmpPolje.m_x, tmpPolje.m_y));
 		
-		if(tmpPolje.m_vetrovno == true){
+		if(tmpPolje.m_vetrovno){
 			WumpusHelper.Print(WumpusSteps.zaznalVetric);
 			action = WumpusActions.back;
 			m_points += WumpusRating.action;
 		} else if(tmpPolje.m_smrad){
 			WumpusHelper.Print(WumpusSteps.zaznalSmrad);
-			action = WumpusActions.back;
 			m_points += WumpusRating.action;
 		} else if(tmpPolje.m_zlato == true){
 			WumpusHelper.Print(WumpusSteps.naselZlato);
@@ -91,14 +89,13 @@ public class WumpusPlayer {
 	 * Action: go down
 	 */
 	public void GoDown(WumpusPolje tmpPolje, WumpusPolje[][] wumpusWorld) {
-		if(wumpusWorld[tmpPolje.m_x][tmpPolje.m_y] != null){
-			tmpPolje.m_x += 1;
-			tmpPolje.m_y += 0;
+		if(wumpusWorld[tmpPolje.m_x+1][tmpPolje.m_y] != null){
+			tmpPolje = wumpusWorld[tmpPolje.m_x+1][tmpPolje.m_y];
 		}
 
 		WumpusHelper.Print(WumpusSteps.PremikNaPolje(tmpPolje.m_x, tmpPolje.m_y));
 		
-		if(tmpPolje.m_vetrovno == true){
+		if(tmpPolje.m_vetrovno){
 			WumpusHelper.Print(WumpusSteps.zaznalVetric);
 			action = WumpusActions.back;
 			m_points += WumpusRating.action;
